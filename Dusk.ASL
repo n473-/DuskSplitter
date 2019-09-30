@@ -35,10 +35,11 @@ update
 
 start 
 {
+	vars.SumIGTE1 = 0;
+	vars.SumIGTE2 = 0;
+	
 	if (settings["Fullgame"]) {
 		if (current.Level == 3 && old.Level == 21) {
-			vars.SumIGTE1 = 0;
-			vars.SumIGTE2 = 0;
 			return true;
 		}
 	}
