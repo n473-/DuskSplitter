@@ -1,19 +1,33 @@
 //Special thanks to Psych0sis and CptBrian
 
-state("Dusk") 
+state("Dusk", "Steam") 
 {
-	byte Level: "mono-2.0-bdwgc.dll", 0x039856C, 0x58C, 0x8, 0x18, 0x98;
-	float StatsScreenTimeSeconds: "mono-2.0-bdwgc.dll", 0x039856C, 0x594, 0x2C, 0x1C, 0x64;
-	float StatsScreenTimeMinutes: "mono-2.0-bdwgc.dll", 0x039856C, 0x58C, 0x60;
+	byte Level: "mono-2.0-bdwgc.dll", 0x04A32A0, 0x280, 0x110, 0x30, 0xA0, 0x60, 0xDC;
+	float StatsScreenTimeSeconds: "mono-2.0-bdwgc.dll", 0x04A3318, 0x2A8, 0x280, 0x110, 0x30, 0xA0, 0x60, 0xA8;
+	float StatsScreenTimeMinutes: "mono-2.0-bdwgc.dll", 0x04A3318, 0x2A8, 0x280, 0x110, 0x30, 0xA0, 0x60, 0xA4;
+}
+
+state("Dusk", "GOG") 
+{
+	byte Level: "mono-2.0-bdwgc.dll", 0x0489A90, 0xB28, 0x10, 0xD0, 0x28, 0xDC;
+	float StatsScreenTimeSeconds: "mono-2.0-bdwgc.dll", 0x0489A90, 0xB28, 0xA8;
+	float StatsScreenTimeMinutes: "mono-2.0-bdwgc.dll", 0x0489A90, 0xB28, 0x10, 0x100, 0x28, 0xA4;
 }
 
 startup 
 {
 	settings.Add("Fullgame", false, "Every Episode starting from E1M1");
+	settings.Add("GOG", false, "Select if using GOG version");
 }
 
 init 
 {
+	if (settings["GOG"] && version != "GOG") {
+		version = "GOG";
+	} else {
+		version = "Steam";
+	}
+
 	refreshRate = 60;
 	vars.IGT = 0;
 	vars.SumIGTE1 = 0;
